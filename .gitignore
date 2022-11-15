@@ -50,3 +50,6 @@ app.*.map.json
 #ios/macos plist related
 /ios/Runner/GoogleService-Info.plist
 /macos/Runner/GoogleService-Info.plist
+
+#api related
+/lib/constants/shipstation_credentials.dart
