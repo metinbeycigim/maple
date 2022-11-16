@@ -15,9 +15,11 @@ class OrderScreen extends ConsumerWidget {
           actions: [
             Padding(
               padding: const EdgeInsets.all(20),
-              child: Text(
-                'Order Qty: ${orders.whenData((value) => value.orders!.length).value}',
-              ),
+              child: orders.hasValue
+                  ? Text(
+                      'Order Qty: ${orders.whenData((value) => value.orders!.length).value}',
+                    )
+                  : const Text('Loading'),
             ),
           ],
         ),
@@ -27,6 +29,7 @@ class OrderScreen extends ConsumerWidget {
               data: (shipstation) {
                 final orderList = shipstation.orders ?? [];
                 return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: orderList.length,
                     itemBuilder: (context, index) {
