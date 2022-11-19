@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maple/models/product_model.dart';
+import 'package:maple/services_providers/firebase_database.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -14,14 +16,30 @@ class HomeScreen extends ConsumerWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+          color: Colors.red,
           shape: const CircularNotchedRectangle(),
           child: SizedBox(
             height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                IconButton(icon: const Icon(Icons.add), onPressed: () {}),
-                IconButton(icon: const Icon(Icons.shop), onPressed: () {}),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    const product = ProductModel(name: 'testname', sku: 'testsku', quantity: 3);
+                    ref.watch(firebaseDatabaseProvider.notifier).addProductFirebase(product);
+                  },
+                  color: Colors.white,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.shop),
+                  onPressed: () {
+                    ref
+                        .watch(firebaseDatabaseProvider.notifier)
+                        .updateProductFirebase(const ProductModel(name: 'updatedname', sku: 'testsku', quantity: 3));
+                  },
+                  color: Colors.white,
+                ),
               ],
             ),
           )),

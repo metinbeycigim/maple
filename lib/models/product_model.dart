@@ -6,11 +6,11 @@ part 'product_model.g.dart';
 @freezed
 class ProductModel with _$ProductModel {
   
-
   const factory ProductModel({
     required String name,
     required String sku,
     String? location,
+    String? upc,
     required int quantity,
     String? cost,
   }) = _ProductModel;

@@ -9,8 +9,8 @@ part 'shipstation_order.g.dart';
 
 @riverpod
 Future<ShipstationModel> getOrders(GetOrdersRef ref) async {
-  final apiKey = ShipstationCredentials.instance.key;
-  final apiSecret = ShipstationCredentials.instance.secret;
+  const apiKey = ShipstationCredentials.key;
+  const apiSecret = ShipstationCredentials.secret;
   final dio = Dio();
 
   final response = await dio
@@ -23,5 +23,3 @@ Future<ShipstationModel> getOrders(GetOrdersRef ref) async {
   }
   throw Exception('Failed to load orders');
 }
-
-

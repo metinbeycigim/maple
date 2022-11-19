@@ -23,6 +23,7 @@ mixin _$ProductModel {
   String get name => throw _privateConstructorUsedError;
   String get sku => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
+  String? get upc => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   String? get cost => throw _privateConstructorUsedError;
 
@@ -39,7 +40,12 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {String name, String sku, String? location, int quantity, String? cost});
+      {String name,
+      String sku,
+      String? location,
+      String? upc,
+      int quantity,
+      String? cost});
 }
 
 /// @nodoc
@@ -58,6 +64,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? name = null,
     Object? sku = null,
     Object? location = freezed,
+    Object? upc = freezed,
     Object? quantity = null,
     Object? cost = freezed,
   }) {
@@ -73,6 +80,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      upc: freezed == upc
+          ? _value.upc
+          : upc // ignore: cast_nullable_to_non_nullable
               as String?,
       quantity: null == quantity
           ? _value.quantity
@@ -95,7 +106,12 @@ abstract class _$$_ProductModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name, String sku, String? location, int quantity, String? cost});
+      {String name,
+      String sku,
+      String? location,
+      String? upc,
+      int quantity,
+      String? cost});
 }
 
 /// @nodoc
@@ -112,6 +128,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? name = null,
     Object? sku = null,
     Object? location = freezed,
+    Object? upc = freezed,
     Object? quantity = null,
     Object? cost = freezed,
   }) {
@@ -127,6 +144,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      upc: freezed == upc
+          ? _value.upc
+          : upc // ignore: cast_nullable_to_non_nullable
               as String?,
       quantity: null == quantity
           ? _value.quantity
@@ -147,6 +168,7 @@ class _$_ProductModel implements _ProductModel {
       {required this.name,
       required this.sku,
       this.location,
+      this.upc,
       required this.quantity,
       this.cost});
 
@@ -160,13 +182,15 @@ class _$_ProductModel implements _ProductModel {
   @override
   final String? location;
   @override
+  final String? upc;
+  @override
   final int quantity;
   @override
   final String? cost;
 
   @override
   String toString() {
-    return 'ProductModel(name: $name, sku: $sku, location: $location, quantity: $quantity, cost: $cost)';
+    return 'ProductModel(name: $name, sku: $sku, location: $location, upc: $upc, quantity: $quantity, cost: $cost)';
   }
 
   @override
@@ -178,6 +202,7 @@ class _$_ProductModel implements _ProductModel {
             (identical(other.sku, sku) || other.sku == sku) &&
             (identical(other.location, location) ||
                 other.location == location) &&
+            (identical(other.upc, upc) || other.upc == upc) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.cost, cost) || other.cost == cost));
@@ -186,7 +211,7 @@ class _$_ProductModel implements _ProductModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, sku, location, quantity, cost);
+      Object.hash(runtimeType, name, sku, location, upc, quantity, cost);
 
   @JsonKey(ignore: true)
   @override
@@ -207,6 +232,7 @@ abstract class _ProductModel implements ProductModel {
       {required final String name,
       required final String sku,
       final String? location,
+      final String? upc,
       required final int quantity,
       final String? cost}) = _$_ProductModel;
 
@@ -219,6 +245,8 @@ abstract class _ProductModel implements ProductModel {
   String get sku;
   @override
   String? get location;
+  @override
+  String? get upc;
   @override
   int get quantity;
   @override
