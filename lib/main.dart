@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maple/screens/home_screen.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:maple/screens/add_product.dart';
 
 import 'firebase_options.dart';
 
@@ -19,9 +21,15 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const MaterialApp(
+      localizationsDelegates: [
+        FormBuilderLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: FormBuilderLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       title: 'Home Page',
-      home: HomeScreen(),
+      home: AddProduct(),
     );
   }
 }

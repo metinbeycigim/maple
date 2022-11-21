@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maple/services_providers/shipstation_order.dart';
 
-class OrderScreen extends ConsumerWidget {
-  const OrderScreen({super.key});
+class Orders extends ConsumerWidget {
+  const Orders({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maple/models/product_model.dart';
 import 'package:maple/services_providers/firebase_database.dart';
 
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
+class Home extends ConsumerWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
