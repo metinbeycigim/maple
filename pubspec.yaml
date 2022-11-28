@@ -48,6 +48,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   form_builder_validators: ^8.4.0
+  collection: ^1.16.0
 
 dev_dependencies:
   flutter_test:
