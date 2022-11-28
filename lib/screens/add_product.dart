@@ -21,6 +21,14 @@ class _AddProductState extends ConsumerState<AddProduct> {
   final barcodeController = TextEditingController();
   final locationController = TextEditingController();
 
+  void initFields() {
+    productNameController.clear();
+    skuController.clear();
+    quantityController.text = '0';
+    barcodeController.clear();
+    locationController.clear();
+  }
+
   @override
   void dispose() {
     productNameController.dispose();
@@ -33,9 +41,9 @@ class _AddProductState extends ConsumerState<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = ref.watch(FirebaseDatabase.productStreamProvider);
+    final productProvider = ref.watch(FirebaseDatabase.productStreamProvider);
 
-    return provider.when(
+    return productProvider.when(
         data: (products) {
           final List<ProductModel> productList = [];
           for (var snapshot in products.docs) {
@@ -75,6 +83,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
                                 ),
                                 textCapitalization: TextCapitalization.words,
                                 name: 'product_name',
+                                controller: productNameController,
                               ),
                               verticalSpace(20),
                               Row(
@@ -191,6 +200,21 @@ class _AddProductState extends ConsumerState<AddProduct> {
                                   ),
                                 ],
                               ),
+                              verticalSpace(25),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    final product = ProductModel(
+                                        name: productNameController.text,
+                                        sku: skuController.text,
+                                        location: locationController.text,
+                                        upc: barcodeController.text,
+                                        quantity: int.parse(quantityController.text));
+                                    ref
+                                        .read(FirebaseDatabase.firebaseClassProvider)
+                                        .addProductFirebase(product)
+                                        .then((value) => initFields());
+                                  },
+                                  child: const Text('Add Product'))
                             ],
                           ),
                         ),

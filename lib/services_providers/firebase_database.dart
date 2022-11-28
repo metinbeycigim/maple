@@ -39,4 +39,5 @@ class FirebaseDatabase extends _$FirebaseDatabase {
   }
 
   static final productStreamProvider = StreamProvider.autoDispose((ref) => FirebaseDatabase().productsRef);
+  static final firebaseClassProvider = Provider<FirebaseDatabase>((ref) => FirebaseDatabase());
 }

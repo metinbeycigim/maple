@@ -27,7 +27,7 @@ class Home extends ConsumerWidget {
                   icon: const Icon(Icons.add),
                   onPressed: () {
                     const product = ProductModel(name: 'testname', sku: 'testsku', quantity: 3);
-                    ref.watch(firebaseDatabaseProvider.notifier).addProductFirebase(product);
+                    ref.watch(firebaseDatabaseProvider).addProductFirebase(product);
                   },
                   color: Colors.white,
                 ),
@@ -35,7 +35,7 @@ class Home extends ConsumerWidget {
                   icon: const Icon(Icons.shop),
                   onPressed: () {
                     ref
-                        .watch(firebaseDatabaseProvider.notifier)
+                        .watch(firebaseDatabaseProvider)
                         .updateProductFirebase(const ProductModel(name: 'updatedname', sku: 'testsku', quantity: 3));
                   },
                   color: Colors.white,
