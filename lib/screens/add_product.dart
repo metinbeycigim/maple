@@ -21,7 +21,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
   final barcodeController = TextEditingController();
   final locationController = TextEditingController();
 
-  void initFields() {
+  void clearFields() {
     productNameController.clear();
     skuController.clear();
     quantityController.text = '0';
@@ -41,7 +41,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = ref.watch(FirebaseDatabase.productStreamProvider);
+    final productProvider = ref.watch(FirebaseDatabase.productsStreamProvider);
 
     return productProvider.when(
         data: (products) {
@@ -54,7 +54,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
             (element) {
               return element.sku == skuController.text;
             },
-          )?.quantity;
+          )?.stockQuantity;
           return GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Scaffold(
@@ -156,10 +156,12 @@ class _AddProductState extends ConsumerState<AddProduct> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      int currentQuantity = int.parse(quantityController.text);
-                                      currentQuantity--;
-                                      quantityController.text = currentQuantity < 0 ? '0' : currentQuantity.toString();
-                                      setState(() {});
+                                      setState(() {
+                                        int currentQuantity = int.parse(quantityController.text);
+                                        currentQuantity--;
+                                        quantityController.text =
+                                            currentQuantity < 0 ? '0' : currentQuantity.toString();
+                                      });
                                     },
                                     style: ElevatedButton.styleFrom(
                                         shape: const CircleBorder(), minimumSize: const Size(50, 50)),
@@ -186,10 +188,11 @@ class _AddProductState extends ConsumerState<AddProduct> {
                                   ),
                                   ElevatedButton(
                                     onPressed: () {
-                                      int currentQuantity = int.parse(quantityController.text);
-                                      currentQuantity++;
-                                      quantityController.text = currentQuantity.toString();
-                                      setState(() {});
+                                      setState(() {
+                                        int currentQuantity = int.parse(quantityController.text);
+                                        currentQuantity++;
+                                        quantityController.text = currentQuantity.toString();
+                                      });
                                     },
                                     style: ElevatedButton.styleFrom(
                                         shape: const CircleBorder(), minimumSize: const Size(50, 50)),
@@ -203,16 +206,25 @@ class _AddProductState extends ConsumerState<AddProduct> {
                               verticalSpace(25),
                               ElevatedButton(
                                   onPressed: () {
+                                    final location = Location(
+                                        location: locationController.text,
+                                        quantity: int.parse(quantityController.text));
+                                    List<Location> locations = [
+                                      ...?productList
+                                          .firstWhereOrNull((element) => element.upc == barcodeController.text)
+                                          ?.locations
+                                    ];
+                                    locations.add(location);
                                     final product = ProductModel(
                                         name: productNameController.text,
                                         sku: skuController.text,
-                                        location: locationController.text,
+                                        locations: locations,
                                         upc: barcodeController.text,
-                                        quantity: int.parse(quantityController.text));
+                                        stockQuantity: int.parse(quantityController.text));
                                     ref
                                         .read(FirebaseDatabase.firebaseClassProvider)
-                                        .addProductFirebase(product)
-                                        .then((value) => initFields());
+                                        .addOrUpdateProductFirebase(product)
+                                        .then((_) => clearFields());
                                   },
                                   child: const Text('Add Product'))
                             ],

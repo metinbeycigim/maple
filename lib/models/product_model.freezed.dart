@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'product_model.dart';
 
@@ -22,9 +22,9 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 mixin _$ProductModel {
   String get name => throw _privateConstructorUsedError;
   String get sku => throw _privateConstructorUsedError;
-  String? get location => throw _privateConstructorUsedError;
+  List<Location>? get locations => throw _privateConstructorUsedError;
   String? get upc => throw _privateConstructorUsedError;
-  int get quantity => throw _privateConstructorUsedError;
+  int get stockQuantity => throw _privateConstructorUsedError;
   String? get cost => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,9 +42,9 @@ abstract class $ProductModelCopyWith<$Res> {
   $Res call(
       {String name,
       String sku,
-      String? location,
+      List<Location>? locations,
       String? upc,
-      int quantity,
+      int stockQuantity,
       String? cost});
 }
 
@@ -63,9 +63,9 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   $Res call({
     Object? name = null,
     Object? sku = null,
-    Object? location = freezed,
+    Object? locations = freezed,
     Object? upc = freezed,
-    Object? quantity = null,
+    Object? stockQuantity = null,
     Object? cost = freezed,
   }) {
     return _then(_value.copyWith(
@@ -77,17 +77,17 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
               as String,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
+      locations: freezed == locations
+          ? _value.locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<Location>?,
       upc: freezed == upc
           ? _value.upc
           : upc // ignore: cast_nullable_to_non_nullable
               as String?,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
+      stockQuantity: null == stockQuantity
+          ? _value.stockQuantity
+          : stockQuantity // ignore: cast_nullable_to_non_nullable
               as int,
       cost: freezed == cost
           ? _value.cost
@@ -108,9 +108,9 @@ abstract class _$$_ProductModelCopyWith<$Res>
   $Res call(
       {String name,
       String sku,
-      String? location,
+      List<Location>? locations,
       String? upc,
-      int quantity,
+      int stockQuantity,
       String? cost});
 }
 
@@ -127,9 +127,9 @@ class __$$_ProductModelCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? sku = null,
-    Object? location = freezed,
+    Object? locations = freezed,
     Object? upc = freezed,
-    Object? quantity = null,
+    Object? stockQuantity = null,
     Object? cost = freezed,
   }) {
     return _then(_$_ProductModel(
@@ -141,17 +141,17 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
               as String,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
+      locations: freezed == locations
+          ? _value._locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<Location>?,
       upc: freezed == upc
           ? _value.upc
           : upc // ignore: cast_nullable_to_non_nullable
               as String?,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
+      stockQuantity: null == stockQuantity
+          ? _value.stockQuantity
+          : stockQuantity // ignore: cast_nullable_to_non_nullable
               as int,
       cost: freezed == cost
           ? _value.cost
@@ -167,10 +167,11 @@ class _$_ProductModel implements _ProductModel {
   const _$_ProductModel(
       {required this.name,
       required this.sku,
-      this.location,
+      final List<Location>? locations,
       this.upc,
-      required this.quantity,
-      this.cost});
+      required this.stockQuantity,
+      this.cost})
+      : _locations = locations;
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelFromJson(json);
@@ -179,18 +180,26 @@ class _$_ProductModel implements _ProductModel {
   final String name;
   @override
   final String sku;
+  final List<Location>? _locations;
   @override
-  final String? location;
+  List<Location>? get locations {
+    final value = _locations;
+    if (value == null) return null;
+    if (_locations is EqualUnmodifiableListView) return _locations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? upc;
   @override
-  final int quantity;
+  final int stockQuantity;
   @override
   final String? cost;
 
   @override
   String toString() {
-    return 'ProductModel(name: $name, sku: $sku, location: $location, upc: $upc, quantity: $quantity, cost: $cost)';
+    return 'ProductModel(name: $name, sku: $sku, locations: $locations, upc: $upc, stockQuantity: $stockQuantity, cost: $cost)';
   }
 
   @override
@@ -200,18 +209,24 @@ class _$_ProductModel implements _ProductModel {
             other is _$_ProductModel &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.sku, sku) || other.sku == sku) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
+            const DeepCollectionEquality()
+                .equals(other._locations, _locations) &&
             (identical(other.upc, upc) || other.upc == upc) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
+            (identical(other.stockQuantity, stockQuantity) ||
+                other.stockQuantity == stockQuantity) &&
             (identical(other.cost, cost) || other.cost == cost));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, sku, location, upc, quantity, cost);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      sku,
+      const DeepCollectionEquality().hash(_locations),
+      upc,
+      stockQuantity,
+      cost);
 
   @JsonKey(ignore: true)
   @override
@@ -231,9 +246,9 @@ abstract class _ProductModel implements ProductModel {
   const factory _ProductModel(
       {required final String name,
       required final String sku,
-      final String? location,
+      final List<Location>? locations,
       final String? upc,
-      required final int quantity,
+      required final int stockQuantity,
       final String? cost}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -244,15 +259,167 @@ abstract class _ProductModel implements ProductModel {
   @override
   String get sku;
   @override
-  String? get location;
+  List<Location>? get locations;
   @override
   String? get upc;
   @override
-  int get quantity;
+  int get stockQuantity;
   @override
   String? get cost;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Location _$LocationFromJson(Map<String, dynamic> json) {
+  return _Location.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Location {
+  String? get location => throw _privateConstructorUsedError;
+  int? get quantity => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LocationCopyWith<Location> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocationCopyWith<$Res> {
+  factory $LocationCopyWith(Location value, $Res Function(Location) then) =
+      _$LocationCopyWithImpl<$Res, Location>;
+  @useResult
+  $Res call({String? location, int? quantity});
+}
+
+/// @nodoc
+class _$LocationCopyWithImpl<$Res, $Val extends Location>
+    implements $LocationCopyWith<$Res> {
+  _$LocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = freezed,
+    Object? quantity = freezed,
+  }) {
+    return _then(_value.copyWith(
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
+  factory _$$_LocationCopyWith(
+          _$_Location value, $Res Function(_$_Location) then) =
+      __$$_LocationCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? location, int? quantity});
+}
+
+/// @nodoc
+class __$$_LocationCopyWithImpl<$Res>
+    extends _$LocationCopyWithImpl<$Res, _$_Location>
+    implements _$$_LocationCopyWith<$Res> {
+  __$$_LocationCopyWithImpl(
+      _$_Location _value, $Res Function(_$_Location) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = freezed,
+    Object? quantity = freezed,
+  }) {
+    return _then(_$_Location(
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Location implements _Location {
+  const _$_Location({this.location, this.quantity});
+
+  factory _$_Location.fromJson(Map<String, dynamic> json) =>
+      _$$_LocationFromJson(json);
+
+  @override
+  final String? location;
+  @override
+  final int? quantity;
+
+  @override
+  String toString() {
+    return 'Location(location: $location, quantity: $quantity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Location &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, location, quantity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
+      __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LocationToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Location implements Location {
+  const factory _Location({final String? location, final int? quantity}) =
+      _$_Location;
+
+  factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
+
+  @override
+  String? get location;
+  @override
+  int? get quantity;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
       throw _privateConstructorUsedError;
 }
