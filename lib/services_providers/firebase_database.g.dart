@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $FirebaseDatabaseHash() => r'4efba834a5cf3967f36f12d8a93ff3cdc7eecfd9';
+String $FirebaseDatabaseHash() => r'e1a38eefe352bbc2b8bd24c1ddb2bab1351d9edd';
 
 /// See also [FirebaseDatabase].
 final firebaseDatabaseProvider =

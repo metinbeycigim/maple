@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:maple/screens/add_product.dart';
 import 'package:maple/screens/home.dart';
 import 'package:maple/screens/orders.dart';
 import 'package:maple/screens/product_detail.dart';
@@ -12,6 +13,10 @@ class Routes {
         GoRoute(
           path: '/',
           builder: (context, state) => const Home(),
+        ),
+        GoRoute(
+          path: '/add_product',
+          builder: (context, state) => const AddProduct(),
         ),
         GoRoute(
           path: '/orders',

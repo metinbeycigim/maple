@@ -6,19 +6,19 @@ part of 'shipstation_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ShipstationModel _$$_ShipstationModelFromJson(Map<String, dynamic> json) =>
+_$_ShipstationModel _$$_ShipstationModelFromJson(Map json) =>
     _$_ShipstationModel(
       orders: (json['orders'] as List<dynamic>?)
-          ?.map((e) => Order.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Order.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
     );
 
 Map<String, dynamic> _$$_ShipstationModelToJson(_$_ShipstationModel instance) =>
     <String, dynamic>{
-      'orders': instance.orders,
+      'orders': instance.orders?.map((e) => e.toJson()).toList(),
     };
 
-_$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
+_$_Order _$$_OrderFromJson(Map json) => _$_Order(
       orderId: json['orderId'] as int?,
       orderNumber: json['orderNumber'] as String?,
       orderDate: json['orderDate'] as String?,
@@ -35,7 +35,7 @@ _$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
       nameForSorting: json['nameForSorting'] as String?,
       quantityForSorting: json['quantityForSorting'] as int?,
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Item.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
     );
 
@@ -55,10 +55,10 @@ Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'ocationForSorting': instance.ocationForSorting,
       'nameForSorting': instance.nameForSorting,
       'quantityForSorting': instance.quantityForSorting,
-      'items': instance.items,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-_$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
+_$_Item _$$_ItemFromJson(Map json) => _$_Item(
       sku: json['sku'] as String?,
       location: json['location'] as String?,
       name: json['name'] as String?,

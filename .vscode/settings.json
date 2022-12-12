@@ -5,6 +5,8 @@
     "cupertino",
     "firestore",
     "fluttertoast",
+    "LTRB",
+    "nodoc",
     "riverpod",
     "shipstation",
     "unfocus"

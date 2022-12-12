@@ -207,7 +207,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
                               ElevatedButton(
                                   onPressed: () {
                                     final location = Location(
-                                        location: locationController.text,
+                                        location: locationController.text.toUpperCase(),
                                         quantity: int.parse(quantityController.text));
                                     List<Location> locations = [
                                       ...?productList
@@ -217,7 +217,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
                                     locations.add(location);
                                     final product = ProductModel(
                                         name: productNameController.text,
-                                        sku: skuController.text,
+                                        sku: skuController.text.toUpperCase(),
                                         locations: locations,
                                         upc: barcodeController.text,
                                         stockQuantity: int.parse(quantityController.text));

@@ -15,11 +15,13 @@ class ProductDetail extends ConsumerWidget {
     return productProvider.when(
         data: (products) {
           final List<Location> locationList = [];
-          for (var snapshot in products.docs) {
-            final product = ProductModel.fromJson(snapshot.data());
-            for (var location in product.locations!) {
+          ProductModel? product;
+          for (var snapshot in products.docs.where((element) => element['sku'] == sku)) {
+            final firebaseProduct = ProductModel.fromJson(snapshot.data());
+            for (var location in firebaseProduct.locations!) {
               locationList.add(location);
             }
+            product = firebaseProduct;
           }
           return GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -27,14 +29,63 @@ class ProductDetail extends ConsumerWidget {
               appBar: AppBar(title: Text(sku)),
               body: Padding(
                 padding: const EdgeInsets.all(8),
-                child: ListView.builder(
-                  itemCount: locationList.length,
-                  itemBuilder: ((context, index) {
-                    return ListTile(
-                      title: Text(locationList[index].location.toString()),
-                      trailing: Text(locationList[index].quantity.toString()),
-                    );
-                  }),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Text(
+                            product!.name,
+                            textAlign: TextAlign.center,
+                            textScaleFactor: 1.25,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [Text('Location'), Text('Quantity')],
+                      ),
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        child: Card(
+                          child: ListView.builder(
+                            itemCount: locationList.length,
+                            itemBuilder: ((context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(18, 20, 6, 6),
+                                      child: Text(locationList[index].location.toString()),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(6, 20, 18, 6),
+                                      child: Text(locationList[index].quantity.toString()),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Edit Product'),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
