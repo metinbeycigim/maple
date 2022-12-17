@@ -7,7 +7,7 @@ import 'package:maple/screens/product_list.dart';
 
 class Routes {
   const Routes._();
-  static get instance => const Routes._();
+  static const Routes instance = Routes._();
 
   List<GoRoute> get routes => [
         GoRoute(

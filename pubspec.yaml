@@ -50,6 +50,7 @@ dependencies:
   form_builder_validators: ^8.4.0
   collection: ^1.16.0
   json_annotation: ^4.7.0
+  modal_bottom_sheet: ^2.1.2
 
 dev_dependencies:
   flutter_test:

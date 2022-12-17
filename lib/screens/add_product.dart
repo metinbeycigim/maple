@@ -205,7 +205,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
                               ),
                               verticalSpace(25),
                               ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
                                     final location = Location(
                                         location: locationController.text.toUpperCase(),
                                         quantity: int.parse(quantityController.text));
@@ -221,7 +221,7 @@ class _AddProductState extends ConsumerState<AddProduct> {
                                         locations: locations,
                                         upc: barcodeController.text,
                                         stockQuantity: int.parse(quantityController.text));
-                                    ref
+                                    await ref
                                         .read(FirebaseDatabase.firebaseClassProvider)
                                         .addOrUpdateProductFirebase(product)
                                         .then((_) => clearFields());

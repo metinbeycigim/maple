@@ -83,6 +83,9 @@ class ProductDetail extends ConsumerWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         child: const Text('Edit Product'),
+                        //!----------------------------------------------------------------
+                        //! edit field will be implemented as a modal bottom sheet widget.
+                        //!----------------------------------------------------------------
                       ),
                     )
                   ],
